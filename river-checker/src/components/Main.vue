@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <div class="header">City: {{weather.name}}  <img :src="`https://www.countryflags.io/${weather.country}/flat/32.png`" alt="icon"></div>
+  <b-container fluid="md">
+    <b-row align-h="center">
+      <div class="header">City: {{weather.name}}  <img :src="`https://www.countryflags.io/${weather.country}/flat/32.png`" alt="icon"></div>
+    </b-row>
     <Weather
             :name="weather.name"
             :country="weather.country"
@@ -10,26 +12,24 @@
             :icon="weather.icon"
     >
     </Weather>
-    <div>
-      <b-container fluid="md">
-        <b-row align-h="center">
-          <b-col lg="150">
-            <b-input-group prepend="City" class="mt-3" size="md">
-              <b-form-input v-model="city"></b-form-input>
-              <b-input-group-append>
-                <b-button variant="info" @click="getData">Enter</b-button>
-              </b-input-group-append>
-            </b-input-group>
-          </b-col>
-        </b-row>
-      </b-container>
-    </div>
+    <b-container fluid="md" class="EnterCityButton">
+      <b-row align-h="center">
+        <b-col lg="150">
+          <b-input-group prepend="City" class="mt-3" size="md">
+            <b-form-input v-model="city"></b-form-input>
+            <b-input-group-append>
+              <b-button variant="info" @click="getData">Enter</b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-col>
+      </b-row>
+    </b-container>
     <Time
           :currentDateTime="currentDateTime"
           :timezone="weather.timezone"
     >
     </Time>
-  </div>
+  </b-container>
 </template>
 
 <script>

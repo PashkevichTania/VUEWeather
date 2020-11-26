@@ -1,12 +1,17 @@
 <template>
   <div class="card">
-    <div>Temperature: {{ (temp -273.15).toFixed(2)}} &#8451;</div>
+    <div>Temperature: {{ (temp -273.15).toFixed(1)}} &#8451;</div>
     <div>{{main}}
       <img :src="`http://openweathermap.org/img/wn/${icon}@2x.png`" alt="icon" width="75px">
     </div>
     <div id="demo">
       <b-button @click="info"  pill variant="outline-primary" size="sm">
-        Additional info
+        <div v-if="show">
+          Hide additional info
+        </div>
+        <div v-else>
+          Show additional info
+        </div>
       </b-button>
       <transition name="fade">
         <p v-if="show">{{description}}</p>
@@ -20,7 +25,7 @@ export default {
   name: 'Weather',
   data(){
     return{
-      show: true
+      show: false
       /*pictURL: require(`../assets/img/${this.icon}.png`)*//*local img storage*/
     }
   },
@@ -50,7 +55,6 @@ export default {
   font-weight: bold;
   width: 350px;
   margin: 20px;
-  height: 270px;
   padding: 25px;
   display: inline-block;
   transition: .3s;
