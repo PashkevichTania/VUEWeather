@@ -23,9 +23,10 @@ html{
   height: 100%;
 }
 body{
-  min-height: 100vh;
-  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
-  height: 100%;
+  //min-height: 100vh;
+  //background-color: #343a40;;
+  background-image: url("assets/img/pattern-ophelia-wallpaper.png");
+  //background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

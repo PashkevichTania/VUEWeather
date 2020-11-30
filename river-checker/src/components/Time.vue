@@ -30,10 +30,11 @@ export default {
 .card{
   font-size: 23px;
   border-radius: 15px;
-  background: rgba(250, 250, 250, 0.5);
-  color: #165ba2;
+  background: rgba(221, 108, 108, 1);
+  color: #ffffff;
+  //color: #165ba2;
   font-weight: bold;
-  width: 350px;
+  //width: 350px;
   margin: 35px;
   padding: 15px;
   display: inline-block;

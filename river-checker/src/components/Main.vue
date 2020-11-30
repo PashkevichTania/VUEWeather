@@ -1,35 +1,35 @@
 <template>
-  <b-container fluid="md">
-    <b-row align-h="center">
-      <div class="header">City: {{weather.name}}  <img :src="`https://www.countryflags.io/${weather.country}/flat/32.png`" alt="icon"></div>
-    </b-row>
-    <Weather
-            :name="weather.name"
-            :country="weather.country"
-            :main="weather.main"
-            :temp="weather.temp"
-            :description="weather.description"
-            :icon="weather.icon"
-    >
-    </Weather>
-    <b-container fluid="md" class="EnterCityButton">
-      <b-row align-h="center">
-        <b-col lg="150">
-          <b-input-group prepend="City" class="mt-3" size="md">
-            <b-form-input v-model="city"></b-form-input>
-            <b-input-group-append>
-              <b-button variant="info" @click="getData">Enter</b-button>
-            </b-input-group-append>
-          </b-input-group>
-        </b-col>
-      </b-row>
+
+    <b-container fluid="md" class="container-border">
+      <Weather
+        :name="weather.name"
+        :country="weather.country"
+        :main="weather.main"
+        :temp="weather.temp"
+        :description="weather.description"
+        :icon="weather.icon"
+      >
+      </Weather>
+      <b-container fluid="md" class="EnterCityButton">
+        <b-row align-h="center">
+          <b-col lg="150">
+            <b-input-group prepend="City" class="mt-3" size="md">
+              <b-form-input v-model="city"></b-form-input>
+              <b-input-group-append>
+                <b-button variant="info" @click="getData">Enter</b-button>
+              </b-input-group-append>
+            </b-input-group>
+          </b-col>
+        </b-row>
+      </b-container>
+      <Time
+        :currentDateTime="currentDateTime"
+        :timezone="weather.timezone"
+      >
+      </Time>
     </b-container>
-    <Time
-          :currentDateTime="currentDateTime"
-          :timezone="weather.timezone"
-    >
-    </Time>
-  </b-container>
+
+
 </template>
 
 <script>
@@ -125,5 +125,8 @@ a:active {
 .header{
   font-size: xx-large;
   color: #c11a61;
+}
+.container-border{
+
 }
 </style>

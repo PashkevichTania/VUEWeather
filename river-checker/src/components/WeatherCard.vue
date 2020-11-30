@@ -1,23 +1,28 @@
 <template>
-  <div class="card">
-    <div>Temperature: {{ (temp -273.15).toFixed(1)}} &#8451;</div>
-    <div>{{main}}
-      <img :src="`http://openweathermap.org/img/wn/${icon}@2x.png`" alt="icon" width="75px">
-    </div>
-    <div id="demo">
-      <b-button @click="info"  pill variant="outline-primary" size="sm">
-        <div v-if="show">
-          Hide additional info
+  <b-container fluid="md">
+    <b-row align-h="center">
+      <div class="card">
+        <div class="header">City: {{name}}  <img :src="`https://www.countryflags.io/${country}/flat/32.png`" alt="icon"></div>
+        <div>Temperature: {{ (temp -273.15).toFixed(1)}} &#8451;</div>
+        <div>{{main}}
+          <img :src="`http://openweathermap.org/img/wn/${icon}@2x.png`" alt="icon" width="75px">
         </div>
-        <div v-else>
-          Show additional info
+        <div id="demo">
+          <b-button @click="info"  pill variant="danger" size="sm">
+            <div v-if="show">
+              Hide additional info
+            </div>
+            <div v-else>
+              Show additional info
+            </div>
+          </b-button>
+          <transition name="fade">
+            <p v-if="show">{{description}}</p>
+          </transition>
         </div>
-      </b-button>
-      <transition name="fade">
-        <p v-if="show">{{description}}</p>
-      </transition>
-    </div>
-  </div>
+      </div>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -50,10 +55,10 @@ export default {
 .card{
   font-size: 25px;
   border-radius: 15px;
-  background: rgba(250, 250, 250, 0.5);
-  color: #289b85;
+  background: rgba(221, 108, 108, 1);
+  color: #ffffff;
   font-weight: bold;
-  width: 350px;
+  // width: 350px;
   margin: 20px;
   padding: 25px;
   display: inline-block;
