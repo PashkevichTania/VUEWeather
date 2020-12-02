@@ -1,6 +1,5 @@
 <template>
-
-    <b-container fluid="md" class="container-border">
+    <b-container fluid="md">
       <Weather
         :name="weather.name"
         :country="weather.country"
@@ -27,9 +26,8 @@
         :timezone="weather.timezone"
       >
       </Time>
+      <div>P{{cityImageUrl}}</div>
     </b-container>
-
-
 </template>
 
 <script>
@@ -50,6 +48,7 @@ export default {
       currentDateTime: null,
       time: null,
       date: null,
+      cityImageUrl: null,
       weather: {
         name: null,
         country: null,
@@ -65,7 +64,7 @@ export default {
   methods: {
     getData: function () {
       this.regApi.getData(this.city).then(data => {
-        console.log(data)
+        //console.log(data)
         this.weather.name = data.data.name
         this.weather.country = data.data.sys.country
         this.weather.temp = data.data.main.temp
@@ -77,35 +76,27 @@ export default {
         localStorage.city = this.city;
         // this.WeatherMass = data.data
       })
+      axios
+        .get('http://worldclockapi.com/api/json/utc/now')
+        .then(response => (this.currentDateTime = response.data.currentDateTime))
+        .catch(error => console.log(error))
+      axios
+        .get(`https://api.teleport.org/api/urban_areas/slug:${this.city.toLowerCase()}/images/`)
+        .then(response => (console.log(response.data)))
+        .then(response => (this.cityImageUrl = response.data.photos[0].image.web))
+        .catch(error => console.log(error))
+      console.log(this.cityImageUrl)
     },
   },
   created() {
     this.city = "Minsk"
     this.getData(this.city)
   },
-  mounted() {
-    axios
-      .get('http://worldclockapi.com/api/json/utc/now')
-      .then(response => (this.currentDateTime = response.data.currentDateTime))
-      .catch(error => console.log(error));
-  },
 }
 
 </script>
 
 <style scoped>
-
-h1{
-  color: #000000;
-}
-h3{
-  color: coral;
-}
-span{
-  color: #154088;
-  font-weight: bold;
-  border-bottom: 1px dashed;
-}
 a:link {
   color: #497DDD;
   font-weight: bold;
@@ -125,8 +116,5 @@ a:active {
 .header{
   font-size: xx-large;
   color: #c11a61;
-}
-.container-border{
-
 }
 </style>
